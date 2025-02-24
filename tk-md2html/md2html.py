@@ -94,24 +94,32 @@ body {
 
 
 
-try:
-    markdown_file = sys.argv[1]
-    output_file = sys.argv[2]
+
+
+
+
+
+def main():
     try:
-        bg = sys.argv[3]
-        if bg.lower() == "dark":
-            background_color = "#2f3436"
-        elif bg.lower() == "light":
+        markdown_file = sys.argv[1]
+        output_file = sys.argv[2]
+        try:
+            bg = sys.argv[3]
+            if bg.lower() == "dark":
+                background_color = "#2f3436"
+            elif bg.lower() == "light":
+                background_color = "#b3b3b3"
+        except IndexError:
             background_color = "#b3b3b3"
+        except Exception:
+            background_color = "#b3b3b3"
+
+        convert_md_to_html(markdown_file, output_file, background_color)
     except IndexError:
-        background_color = "#b3b3b3"
-    except Exception:
-        background_color = "#b3b3b3"
+        print("\nmd2html converter\nCopyright (c) 2025 Tobias Kisling")
+        print("Usage: python md2html.py <markdown_file> <output_file> <background (Optional, default: light, possible: dark/light)>")
+    except Exception as e:
+        print(f"Error: {e}")
 
-    convert_md_to_html(markdown_file, output_file, background_color)
-except IndexError:
-    print("\nmd2html converter\nCopyright (c) 2025 Tobias Kisling")
-    print("Usage: python md2html.py <markdown_file> <output_file> <background (Optional, default: light, possible: dark/light)>")
-
-except Exception as e:
-    print(f"Error: {e}")
+if __name__ == "__main__":
+    main()
