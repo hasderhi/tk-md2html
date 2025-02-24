@@ -13,3 +13,4 @@ dependencies = []
 
 [project.scripts]
 md2html = "my_module.md2html:main" 
+ 
